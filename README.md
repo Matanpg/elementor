@@ -15,7 +15,12 @@
 #### Code flow
 1. Load csv from S3
 2. For every URL(row) in file, check state in DB. If data was refreshed in last 30 minutes, only update a 'last update request' timestamp.
-3. For un-fresh URLs, call VirusTotal API and update DB with results.
+3. For un-fresh URLs, call VirusTotal API and update DB with results according to business logic.
+
+#### Code project structure
+* lambda handler - the entry point and where the flow is handled
+* database module - to check state, update, and retrieve data
+* virus_total module - for calling the API
 
 #### Data structure
 Assuming that the data gathered by this solution is used mostly in the single URL level and not for aggregated analysis, a document database is used.
