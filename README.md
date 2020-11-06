@@ -12,7 +12,7 @@
 ![pic](pics/high_levels.png)
 
 ### Detailed Design
-####C ode flow
+#### Code flow
 1. Load csv from S3
 2. For every URL(row) in file, check state in DB. If data was refreshed in last 30 minutes, only update a 'last update request' timestamp.
 3. For un-fresh URLs, call VirusTotal API and update DB with results.
