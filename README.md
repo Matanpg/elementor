@@ -2,7 +2,7 @@
 
 ## Coding Assignment
 
-###High-level Design
+### High-level Design
 
 1. CSV files with URLs for inspection are updated in a designated location in S3.
 2. This location is configured to trigger an event with every update of a file, adding the file location to an SQS queue.
@@ -11,13 +11,13 @@
 4. This API can be called from other resources to update specific URLs and retrieve the analysis data from the database.
 ![pic](pics/high_levels.png)
 
-###Detailed Design
-####Code flow
+### Detailed Design
+####C ode flow
 1. Load csv from S3
 2. For every URL(row) in file, check state in DB. If data was refreshed in last 30 minutes, only update a 'last update request' timestamp.
 3. For un-fresh URLs, call VirusTotal API and update DB with results.
 
-####Data structure
+#### Data structure
 Assuming that the data gathered by this solution is used mostly in the single URL level and not for aggregated analysis, a document database is used.
 Each document represents a URL and has the following structure:
 ```json
